@@ -9,14 +9,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppTest {
     @Test 
     void testYgosu() {
-        App classUnderTest = new App();
-        classUnderTest.ygosu();
+        
+        App test = new App();
+        test.ygosu("https://ygosu.com/community/stock");
+        // classUnderTest.ygosu("https://ygosu.com/community/stock");
         // assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
 
     @Test
     void testNaver(){
         App test = new App();
-        test.naver();
+        test.naver("https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=101");
     }
 }

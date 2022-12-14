@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.attribute.standard.JobHoldUntil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,15 +28,14 @@ import org.w3c.dom.ElementTraversal;
 
 public class App {
 
-    private final String URL = "https://ygosu.com/community/stock";
+    
     
 
-    public void ygosu() {
+    public void ygosu(final String URL) {
         try{
-
+            // private final String URL = "https://ygosu.com/community/stock";
+            
             Document document =  Jsoup.connect(URL).get();
-            // Element element = document.getElementsByClass("tit").get(0);
-            // System.out.println(element);
 
             Element table = document.select("table").get(0);
             Elements infos = table.select("tbody tr");
@@ -60,9 +61,9 @@ public class App {
 
     }
     
-    public void naver(){
+    public void naver(final String URL){
         
-        String URL = "https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=101";
+        // private String URL = "https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=101";
         int cnt=0;
         try{
             
@@ -100,7 +101,11 @@ public class App {
             
             Object obj = new JSONParser().parse(new FileReader("D:\\fastcampus\\94_crwaling\\app\\src\\main\\resources\\sitelist.json"));
             JSONObject jObject = (JSONObject) obj;
-            
+
+            // new App().ygosu(jObject.get("ygosu").toString()); 
+            App app = new App();
+            app.ygosu((String) jObject.get("ygosu"));
+            // new App().naver(jObject.get("naver").toString());
             
 
         }catch(ParseException e){
